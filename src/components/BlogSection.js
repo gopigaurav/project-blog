@@ -50,7 +50,7 @@ const BlogSection = ({ blogs, user, handleDelete }) => {
                       class="btn btn-primary"
                       data-bs-toggle="modal"
                       data-bs-target="#exampleModal"
-                      onClick={() => setToBeDel(item)}
+                      onClick={() => handleDelete(item.id)}
                     />
                   </div>
                 </>

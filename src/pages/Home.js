@@ -34,13 +34,15 @@ const Home = ({ setActive, user }) => {
     return <Spinner />;
   }
   const handleDelete = async (id) => {
-    try {
-      setLoading(true);
-      await deleteDoc(doc(db, "blogs", id));
-      toast.success("Blog deleted successfully");
-      setLoading(false);
-    } catch (err) {
-      toast.error(err.message);
+    if (window.confirm("Are you sure wanted to delete that blog ?")) {
+      try {
+        setLoading(true);
+        await deleteDoc(doc(db, "blogs", id));
+        toast.success("Blog deleted successfully");
+        setLoading(false);
+      } catch (err) {
+        toast.error(err.message);
+      }
     }
   };
   return (

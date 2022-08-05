@@ -6,7 +6,7 @@ import { db } from "../firebase";
 const Detail = ({ setActive }) => {
   const { id } = useParams();
   const [blog, setBlog] = useState(null);
-  const [blogs, setBlogs] = useState([]);
+  const [ , setBlogs] = useState([]);
 
   useEffect(() => {
     const getBlogsData = async () => {
