@@ -1,5 +1,6 @@
 {
   "name": "asgm-one",
+  "homepage": "http://gitname.github.io/project-blog",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
