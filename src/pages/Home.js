@@ -16,6 +16,7 @@ const Home = ({ setActive, user }) => {
         snapshot.docs.forEach((doc) => {
           list.push({ id: doc.id, ...doc.data() });
         });
+        console.log(list)
         setBlogs(list);
         setLoading(false);
         setActive("home");
@@ -24,7 +25,26 @@ const Home = ({ setActive, user }) => {
         toast.error(error.message);
       }
     );
-
+    return () => {
+      unsub();
+    };
+  }, []);
+  useEffect(() => {
+    const unsub = onSnapshot(
+      collection(db, "blogs"),
+      (snapshot) => {
+        let list = [];
+        snapshot.docs.forEach((doc) => {
+          list.push({ id: doc.id, ...doc.data() });
+        });
+        setBlogs(list);
+        setLoading(false);
+        setActive("home");
+      },
+      (error) => {
+        toast.error(error.message);
+      }
+    );
     return () => {
       unsub();
     };

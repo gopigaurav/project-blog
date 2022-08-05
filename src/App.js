@@ -47,6 +47,7 @@ function App() {
       />
       <ToastContainer position="top-right" />
       <Routes>
+      <Route path="/" element={<Home setActive={setActive} user={user} />} />
         <Route path="/detail/:id" element={<Detail setActive={setActive} />} />
         <Route
           path="/create"
@@ -61,7 +62,6 @@ function App() {
           }
         />
         <Route path="/auth" element={<Auth setActive={setActive} setUser={setUser} />} />
-        <Route path="/" element={<Home setActive={setActive} user={user} />} />
         <Route path="*" element={<NotFound />} />
 
       </Routes>
