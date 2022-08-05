@@ -29,32 +29,33 @@ const BlogSection = ({ blogs, user, handleDelete }) => {
             <div className="short-description text-start">
               {excerpt(item.description, 120)}
             </div>
-            <Link to={`/detail/${item.id}`}>
-              <button className="btn btn-read">Read More</button>
-            </Link>
-            {userId && item.userId === userId && (
-              <>
-                <div>{item.id}</div>
-                <div style={{ float: "right" }}>
-                  <Link to={`/update/${item.id}`}>
+            <div>
+              <Link to={`/detail/${item.id}`}>
+                <button className="btn btn-read">Read More</button>
+              </Link>
+              {userId && item.userId === userId && (
+                <>
+                  <div style={{ float: "right" }}>
+                    <Link to={`/update/${item.id}`}>
+                      <FontAwesome
+                        name="edit"
+                        style={{ cursor: "pointer" }}
+                        size="1.5x"
+                      />
+                    </Link>
                     <FontAwesome
-                      name="edit"
-                      style={{ cursor: "pointer" }}
+                      name="trash"
+                      style={{ margin: "10px 15px", cursor: "pointer" }}
                       size="1.5x"
+                      class="btn btn-primary"
+                      data-bs-toggle="modal"
+                      data-bs-target="#exampleModal"
+                      onClick={() => setToBeDel(item)}
                     />
-                  </Link>
-                  <FontAwesome
-                    name="trash"
-                    style={{ margin: "10px 15px", cursor: "pointer" }}
-                    size="1.5x"
-                    class="btn btn-primary"
-                    data-bs-toggle="modal"
-                    data-bs-target="#exampleModal"
-                    onClick={() => setToBeDel(item)}
-                  />
-                </div>
-              </>
-            )}
+                  </div>
+                </>
+              )}
+            </div>
             <div
               class="modal fade"
               id="exampleModal"
@@ -75,7 +76,9 @@ const BlogSection = ({ blogs, user, handleDelete }) => {
                       aria-label="Close"
                     ></button>
                   </div>
-                  <div class="modal-body">Are you sure you want to delete -> {toBeDel?.title}</div>
+                  <div class="modal-body">
+                    Are you sure you want to delete -> {toBeDel?.title}
+                  </div>
                   <div class="modal-footer">
                     <button
                       type="button"

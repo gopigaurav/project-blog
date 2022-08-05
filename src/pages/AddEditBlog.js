@@ -20,13 +20,9 @@ const initialState = {
 const AddEditBlog = ({ user, setActive }) => {
   const [form, setForm] = useState(initialState);
   const [file, setFile] = useState(null);
-  const [progress, setProgress] = useState(null);
   const [activeBtn, setActiveBtn] = useState(false);
-
   const { id } = useParams();
-
   const navigate = useNavigate();
-
   const { title, description } = form;
 
   useEffect(() => {
@@ -39,10 +35,10 @@ const AddEditBlog = ({ user, setActive }) => {
         (snapshot) => {
           const progress =
             (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-          setProgress(progress);
+          console.log(progress);
         },
         (error) => {
-          console.log(error);
+          toast.error(error.message)
         },
         () => {
           getDownloadURL(uploadTask.snapshot.ref).then((downloadUrl) => {
@@ -86,7 +82,7 @@ const AddEditBlog = ({ user, setActive }) => {
           });
           toast.success("Blog created successfully");
         } catch (err) {
-          console.log(err);
+          toast.error(err.message)
         }
       } else {
         try {
@@ -99,13 +95,12 @@ const AddEditBlog = ({ user, setActive }) => {
           });
           toast.success("Blog updated successfully");
         } catch (err) {
-          console.log(err);
+          toast.error(err.message)
         }
       }
     } else {
       return toast.error("All fields are mandatory to fill");
     }
-
     navigate("/");
   };
 

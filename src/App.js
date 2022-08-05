@@ -45,7 +45,7 @@ function App() {
         user={user}
         handleLogout={handleLogout}
       />
-      <ToastContainer position="top-center" />
+      <ToastContainer position="top-right" />
       <Routes>
         <Route path="/detail/:id" element={<Detail setActive={setActive} />} />
         <Route

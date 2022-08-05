@@ -7,25 +7,18 @@ const Detail = ({ setActive }) => {
   const { id } = useParams();
   const [blog, setBlog] = useState(null);
   const [blogs, setBlogs] = useState([]);
-  const [tags, setTags] = useState([]);
 
   useEffect(() => {
     const getBlogsData = async () => {
       const blogRef = collection(db, "blogs");
       const blogs = await getDocs(blogRef);
       setBlogs(blogs.docs.map((doc) => ({ id: doc.id, ...doc.data() })));
-      let tags = [];
-      blogs.docs.map((doc) => tags.push(...doc.get("tags")));
-      let uniqueTags = [...new Set(tags)];
-      setTags(uniqueTags);
     };
-
     getBlogsData();
   }, []);
 
   useEffect(() => {
     id && getBlogDetail();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
   const getBlogDetail = async () => {

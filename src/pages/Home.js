@@ -33,7 +33,6 @@ const Home = ({ setActive, user }) => {
   if (loading) {
     return <Spinner />;
   }
-
   const handleDelete = async (id) => {
     try {
       setLoading(true);

@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import transitions from "bootstrap";
 
 // mt --> margin top
 const Header = ({ active, setActive, user, handleLogout }) => {

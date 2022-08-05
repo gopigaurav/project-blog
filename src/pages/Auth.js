@@ -3,7 +3,6 @@ import {
   signInWithEmailAndPassword,
   updateProfile,
   signInWithPopup,
-  GoogleAuthProvider,
 } from "firebase/auth";
 import React, { useState } from "react";
 import { toast } from "react-toastify";
@@ -34,7 +33,6 @@ const Auth = ({ setActive, setUser }) => {
     await signInWithPopup(auth, provider)
       .then((result) => {
         setUser(result.user);
-        console.log(result);
         setActive("home");
         navigate("/");
       })
